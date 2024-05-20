@@ -23,6 +23,7 @@ class CameraGroup(pygame.sprite.Group):
     def __init__(self):
         super().__init__()
         self.display_surface = pygame.display.get_surface()
+        self.offset = pygame.math.Vector2()
 
     async def camera_draw(self):
         # Each layer should be run blocking and not async

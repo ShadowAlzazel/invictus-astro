@@ -15,9 +15,11 @@ OVERLAY_POSITIONS = {
 }
 
 LAYERS = {
-    'void': 0,
-    'farspace': 1,
-    'nearspace': 2,
-    'ships': 3,
-    'projectiles': 4
+    'void': 0, # Plain Background
+    'far_space': 1, # Far background objects (far stars, galaxies, etc)
+    'near_space': 2, # Near background objects (planets, stations, nebula)
+    'tiles': 3, # For game tiles
+    'main': 4, # Generic/Logic
+    'entity': 5, # ship entity, game entity
+    'projectiles': 6
 }
