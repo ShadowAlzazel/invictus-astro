@@ -1,0 +1,40 @@
+# A ship takes in 
+
+# A hull object
+
+# In json specify a hull, or hull_stat obj
+
+# Construct form json files
+
+# For making CUSTOM ships 3 key design choices 
+
+
+# HULL
+# Controls the type of ship (BC, BB, etc.)
+# Controls main stats: (FP, ACC, EVA, SPD, LCK, STH)
+# Controls how many component slots and their location
+# Size (How many can fit in a hex)
+
+# COMPONENTS 
+# The equipment of the ship
+# Bonus stats 
+# 
+# Weapon require power
+# Can not create ships that use more power than avaialable
+
+# GEN Power (stamina/man of ships in combat)
+# Start With a TOTAL GEN
+# throuoght battle actions drain GEN
+# Auto-withdraw at a certain GEN (can be disabled)
+
+# MINERVA
+# The ship commander/ ship-girl
+# Affects the effecieny of the ship (If types combine)
+#
+# HAve a manufacturer prefence( +Effecieny to those tpyes)
+
+
+
+# COMPONET SLOTS
+# Takes in a componet obj
+# Has a type 

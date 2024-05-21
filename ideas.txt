@@ -1,0 +1,13 @@
+# Commmon 
+# Created/Formatted
+# Used in-game
+
+
+# Data 
+# base primitive abstract
+# Registered befor load
+
+# Use namespace-like minecraft
+
+
+# Create new ship class

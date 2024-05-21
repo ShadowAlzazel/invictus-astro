@@ -1,0 +1,13 @@
+{
+  "id": "lance_deuterium_A23_x3",
+  "name": "Triple A23 Mk.12 Deuterium Lance",
+  "manufacturer": "invictus:ishtar_tech",
+  "stats": {
+    "power": 40,
+    "attack": 886,
+    "quantity": 3,
+    "reload": 2,
+    "hit": 85,
+    "range": 4
+  }
+}

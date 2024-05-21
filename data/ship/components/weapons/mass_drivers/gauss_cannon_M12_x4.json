@@ -1,0 +1,13 @@
+{
+  "id": "gauss_cannon_M12_x4",
+  "name": "Quadruple M12 Mk.5 Gauss Cannon",
+  "manufacturer": "invictus:trappist_forge_n_foundries",
+  "stats": {
+    "power": 32,
+    "attack": 404,
+    "quantity": 4,
+    "reload": 2,  
+    "hit": 65,
+    "range": 3
+  }
+}

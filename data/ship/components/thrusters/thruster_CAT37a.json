@@ -1,0 +1,9 @@
+{
+  "id": "thruster_CAT37a",
+  "name": "Compression Acceleration Thrusters - Model A",
+  "manufacturer": "invictus:trappist_FNF",
+  "stats": {
+    "speed": 3,
+    "power": 30
+  }
+}
