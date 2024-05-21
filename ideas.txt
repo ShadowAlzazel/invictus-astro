@@ -1,17 +1,10 @@
-# For making CUSTOM ships 3 key design choices 
+# Commmon 
+# Created/Formatted
+# Used in-game
 
 
-# HULL
-# Controls the type of ship (BC, BB, etc.)
-# Controls main stats: (FP, ACC, EVA, SPD, LCK, STH)
-# Controls how many component slots and their location
+# Data 
+# base primitive abstract
+# Registered befor load
 
-# COMPONENTS 
-# The equipment of the ship
-# Bonus stats 
-# 
-
-# 
-
-
-# In json specify a hull, or hull_stat obj
+# Use namespace-like minecraft

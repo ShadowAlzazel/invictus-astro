@@ -1,12 +1,5 @@
 {
   "name": "zenith",
   "type": "BC",
-  "hull_stats": { 
-    "firepower": 493,
-    "accuracy": 47,
-    "evasion": 37,
-    "speed": 5,
-    "luck": 10,
-    "stealth": 0
-  }
+  "hull": "invictus:ZB09"
 }

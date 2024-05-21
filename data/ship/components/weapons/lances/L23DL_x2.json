@@ -1,0 +1,13 @@
+{
+  "id": "L23DL_x2",
+  "name": "Double L23 Deuterium Lance",
+  "manufacturer": "invictus:ares_tech",
+  "stats": {
+    "power": 30,
+    "attack": 886,
+    "quantity": 2,
+    "reload": 2,
+    "hit": 85,
+    "range": 4
+  }
+}
