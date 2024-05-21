@@ -1,5 +1,6 @@
 import pygame
 
+#JSON filename [subtype]_[manufactures]_[name]
 class Component:
     def  __init__(self, data_obj):
         self.id = data_obj['id']
@@ -8,7 +9,7 @@ class Component:
     # Componet 
     # Any type of eqipment from weapons to radar to core
     
-
+#JSON filename [subtype]_[manufactures]_[name]_[subtype_ID][Size]_[quantity]
 class Weapon(Component):
     def  __init__(self, data_obj):
         super().__init__(data_obj)

@@ -8,3 +8,6 @@
 # Registered befor load
 
 # Use namespace-like minecraft
+
+
+# Create new ship class

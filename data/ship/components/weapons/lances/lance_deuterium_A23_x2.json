@@ -1,7 +1,7 @@
 {
-  "id": "L23DL_x2",
-  "name": "Double L23 Deuterium Lance",
-  "manufacturer": "invictus:ares_tech",
+  "id": "lance_deuterium_A23_x3",
+  "name": "Double A23 Mk.12 Deuterium Lance",
+  "manufacturer": "invictus:ishtar_tech",
   "stats": {
     "power": 30,
     "attack": 886,

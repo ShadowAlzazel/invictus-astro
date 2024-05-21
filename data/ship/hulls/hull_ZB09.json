@@ -1,0 +1,50 @@
+{
+  "id": "hull_ZB09",
+  "name": "ZB09 Hull",
+  "manufacturer": "invictus:polaris_skunk_yards",
+  "stats": {
+    "evasion": 37,
+    "speed": 5,
+    "luck": 3,
+    "stealth": 0
+  },
+  "hull_size": 14,
+  "component_slots": {
+    "core": {
+      "size": "L"
+    },
+    "thruster": {
+      "size": "L"
+    },
+    "sensors": {
+      "size": "L"
+    },
+    "primary_battery": {
+      "amount": 5,
+      "turret_size": "L",
+      "turret_1": {
+        "size": "L"
+      },
+      "turret_2": {
+        "size": "L"
+      },
+      "turret_3": {
+        "size": "L"
+      },
+      "turret_4": {
+        "size": "L"
+      },
+      "turret_5": {
+        "size": "L"
+      }
+    },
+    "secondary_battery": {
+      "amount": 6,
+      "turret_size": "M"
+    },
+    "broadside_battery": {
+      "amount": 10,
+      "turret_size": "XS"
+    }
+  }
+}

@@ -1,5 +1,16 @@
 {
-  "name": "zenith",
+  "id": "zenith",
   "type": "BC",
-  "hull": "invictus:ZB09"
+  "name": "Zenith",
+  "hull": "invictus:ZB09",
+  "components": {
+    "core": "invictus:core_ares_CFR81",
+    "thrusters": "invictus:thruster_GFMP2",
+    "primary_battery": {
+      "all": "invictus:lances/lance_deuterium_A23_x2"
+    },
+    "secondary_battery": {
+      "all": "invictus:mass_drivers/gauss_cannon_M12_x4"
+    }
+  }
 }

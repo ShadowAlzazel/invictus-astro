@@ -15,5 +15,5 @@ class ShipComponent:
     
     
 class Ship:
-    def  __init__(self):
+    def  __init__(self, hull):
         pass

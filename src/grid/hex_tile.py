@@ -16,3 +16,6 @@ class HexTile:
             'DL': None,
         }
         self.sprite = sprite
+        
+    def get_distance(self, target_hex: HexTile):
+        pass
