@@ -1,6 +1,7 @@
 import pygame
 
 #JSON filename [subtype]_[manufactures]_[name]
+# MAYBE CREATE DATACLASS??
 class Component: 
     # A template that can be copied
     def  __init__(self, data_obj):

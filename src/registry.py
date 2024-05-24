@@ -23,7 +23,7 @@ class Loader:
     def  __init__(self):
         pass
     
-    
+    # Test method currently
     def load_components(self, path, component_class):
         assert issubclass(component_class, components.Component)
         #assert component_class is components.Component
@@ -31,7 +31,7 @@ class Loader:
         for obj in objs: 
             #print(f'Object name: {obj["name"]}')
             new_obj = component_class(obj)
-            print(new_obj.stats)
+            print(obj)
             
     
     
