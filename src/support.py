@@ -1,7 +1,7 @@
 from os import walk
 import pygame
 
-def import_folder(path): 
+def import_img_folder(path): 
     surface_list = []
     for _, __, img_files in walk(path):
         for image in img_files:

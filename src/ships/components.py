@@ -1,16 +1,31 @@
 import pygame
 
 #JSON filename [subtype]_[manufactures]_[name]
-class Component:
+class Component: 
+    # A template that can be copied
     def  __init__(self, data_obj):
-        self.id = data_obj['id']
-        self.name = data_obj['name']
-        self.stats = data_obj['stats']
+        self.id: str = data_obj['id']
+        self.name: str = data_obj['name']
+        self.stats: dict = data_obj['stats']
+        # Get Stats
+        stat_keys = self.stats.keys()
+        in_keys = lambda k : k in stat_keys
+        # Asserter
+        if in_keys('power'):
+            self._power = self.stats['power']
+            assert self._power >= 0
+        if in_keys('attack'):
+            self._attack = self.stats['attack']
+            assert self._attack >= 0
+        if in_keys('quantity'):
+            self._quantity = self.stats['attack']
+            assert self._quantity >= 1
+        
     # Componet 
     # Any type of eqipment from weapons to radar to core
     
 #JSON filename [subtype]_[manufactures]_[name]_[subtype_ID][Size]_[quantity]
-class Weapon(Component):
+class WeaponComponent(Component):
     def  __init__(self, data_obj):
         super().__init__(data_obj)
         assert self.stats['attack'] >= 0 # 

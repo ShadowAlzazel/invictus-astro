@@ -1,7 +1,10 @@
 import pygame
 import sys
 import asyncio
+# Project modules
 from settings import *
+from registry import *
+from ships import components
 from level import Level
 
 class Game: 
@@ -11,6 +14,14 @@ class Game:
         pygame.display.set_caption("Invictus: Astro")
         self.clock = pygame.time.Clock()
         self.level = Level()
+        # Loader
+        loader = Loader()
+        # TEST
+        test_path = 'data/ship/components/weapons'     
+        test_class = components.WeaponComponent  
+        loader.load_components(test_path, test_class)
+        
+        
 
     async def run(self):
         while True:
@@ -24,6 +35,10 @@ class Game:
             pygame.display.update()
 
 
-if __name__ == '__main__':
+def launch():
     game = Game()
     asyncio.run(game.run())
+
+
+if __name__ == '__main__':
+    launch()
