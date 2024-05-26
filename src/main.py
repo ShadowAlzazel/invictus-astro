@@ -1,11 +1,13 @@
 import pygame
 import sys
 import asyncio
-# Project modules
+# main 
 from settings import *
 from registry import *
-from ships import components
 from level import Level
+# Project modules
+from ships import components
+from grid import tiles
 
 class Game: 
     def __init__(self):
@@ -16,11 +18,13 @@ class Game:
         self.level = Level()
         # Loader
         loader = Loader()
+        # -------------
         # TEST
         test_path = 'data/ship/components/weapons'     
         test_class = components.WeaponComponent  
         loader.load_components(test_path, test_class)
-        
+        new_grid = tiles.HexGrid(1)
+        print(f'Grid Size: {len(new_grid.tiles)}')
         
 
     async def run(self):
