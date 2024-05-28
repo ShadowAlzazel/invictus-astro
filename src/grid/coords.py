@@ -1,14 +1,18 @@
 from typing import Union, Self
 
 class HexCoord:
-    def __init__(self, qrs: list=[0, 0, 0]):
+    def __init__(self, qrs: list[int]):
         # list of [q, r, s]
         self.q = qrs[0] # UR to DL
         self.r = qrs[1] # Up to Down
         self.s = qrs[2] # UL to DR
         # A property of the coord system
         assert self.q + self.r + self.s == 0 # Mess with this for special levels
-        
+      
+    # Used to map coords 
+    def coord_to_key(self) -> str:
+        return f'{self.q}Q_{self.r}R_{self.s}S'  
+      
     # Exhastive statemenet for getting directions in hex coord system
     def direction_vector(self, direction: str, length: int=1) -> Self:
         l = length
@@ -75,6 +79,8 @@ class HexCoord:
                 s = -q - r
                 coords.append(self.add_coord(HexCoord([q, r, s])))
         return coords
+    
+    
     
     # linear interpolation for floats
     def _lerp(self, a, b, t):

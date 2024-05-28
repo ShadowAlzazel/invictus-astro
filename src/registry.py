@@ -1,6 +1,7 @@
 import pygame 
 import json
 import os
+from typing import Union, Self, Optional
 # Project modules
 from ships import components
 
@@ -33,9 +34,16 @@ class Loader:
             new_obj = component_class(obj)
             print(obj)
             
+    # Import a single obj from known path
+    def _import_single_obj(self, path: str):
+        obj = {}
+        with open(path, 'r') as file:
+            json_object = json.loads(file.read())     
+            obj = json_object
+        return obj
     
-    
-    def _import_obj_files(self, path):
+    # Import all objs from the data directory
+    def _import_obj_files(self, path: str):
         # Get files
         files = self._walk_and_find_files(path)
         objs = []
@@ -46,7 +54,8 @@ class Loader:
                 objs.append(json_object)
         return objs
 
-    def _walk_and_find_files(self, path):
+    # Walk through all files in the data directory 
+    def _walk_and_find_files(self, path: str) -> list[str]:
         files = []
         for dirpath, dirnames, filenames in os.walk(path):
             for filename in filenames:

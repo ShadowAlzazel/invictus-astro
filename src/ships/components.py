@@ -7,6 +7,8 @@ class Component:
     def  __init__(self, data_obj):
         self.id: str = data_obj['id']
         self.name: str = data_obj['name']
+        # REGISTER MANUFACTURERS FIRST (change to registry getter)
+        self.manufacturer: str = data_obj['manufacturer']
         self.stats: dict = data_obj['stats']
         # Get Stats
         stat_keys = self.stats.keys()

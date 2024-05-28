@@ -4,45 +4,57 @@
   "manufacturer": "invictus:polaris_skunk_yards",
   "stats": {
     "evasion": 37,
-    "speed": 5,
+    "speed": 1,
     "luck": 3,
     "stealth": 0
   },
-  "hull_size": 14,
+  "capacity": 14,
   "component_slots": {
     "core": {
+      "slot_type": "core",
       "size": "L"
     },
     "thruster": {
+      "slot_type": "thruster",
       "size": "L"
     },
     "sensors": {
+      "slot_type": "sensors",
       "size": "L"
     },
     "primary_battery": {
+      "provider": "list",
       "amount": 5,
-      "turret_size": "L",
-      "turret_1": {
-        "size": "L"
-      },
-      "turret_2": {
-        "size": "L"
-      },
-      "turret_3": {
-        "size": "L"
-      },
-      "turret_4": {
-        "size": "L"
-      },
-      "turret_5": {
-        "size": "L"
-      }
+      "battery": [
+        {
+          "slot_type": "turret",
+          "size": "L"
+        },
+        {
+          "slot_type": "turret",
+          "size": "L"
+        },
+        {
+          "slot_type": "turret",
+          "size": "L"
+        },
+        {
+          "slot_type": "turret",
+          "size": "L"
+        },
+        {
+          "slot_type": "turret",
+          "size": "L"
+        }
+      ]
     },
     "secondary_battery": {
+      "provider": "generator",
       "amount": 6,
       "turret_size": "M"
     },
     "broadside_battery": {
+      "provider": "generator",
       "amount": 10,
       "turret_size": "XS"
     }
