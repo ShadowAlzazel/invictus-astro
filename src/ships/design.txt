@@ -13,12 +13,12 @@
 # Controls the type of ship (BC, BB, etc.)
 # Controls main stats: (FP, ACC, EVA, SPD, LCK, STH)
 # Controls how many component slots and their location
-# Size (How many can fit in a hex)
+# CAPACITY /tonnage (out of 20) how many can fit in a hex
 
 # COMPONENTS 
 # The equipment of the ship
 # Bonus stats 
-# 
+# Size -> what modifers/can fit
 # Weapon require power
 # Can not create ships that use more power than avaialable
 
