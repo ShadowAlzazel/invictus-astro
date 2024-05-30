@@ -4,7 +4,7 @@
   "manufacturer": "invictus:ishtar_tech",
   "stats": {
     "power": 40,
-    "attack": 886,
+    "damage": 886,
     "quantity": 3,
     "reload": 2,
     "hit": 85,

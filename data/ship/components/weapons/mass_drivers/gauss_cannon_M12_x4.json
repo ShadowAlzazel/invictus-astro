@@ -4,7 +4,7 @@
   "manufacturer": "invictus:trappist_forge_n_foundries",
   "stats": {
     "power": 32,
-    "attack": 404,
+    "damage": 404,
     "quantity": 4,
     "reload": 2,  
     "hit": 65,

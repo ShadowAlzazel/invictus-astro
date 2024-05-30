@@ -1,3 +1,6 @@
+
+
+# A data holder 
 class ComponentSlot:
     def  __init__(self, data_obj):
         self.slot_type: str = data_obj['slot_type']
@@ -7,7 +10,35 @@ class ComponentSlot:
     # Have different sizez, PWR usages, etc 
     # Points to a shipComponenet
 
+# Used for set of component_slots liek weapon batteries
+class SlotSet:
+    def  __init__(self, set_id, data_obj):
+        # set vars
+        provider: str = data_obj['provider']
+        self._id: str = set_id
+        self.amount: str = data_obj['amount']
+        self.slots = {}
+        # Asserters
+        assert provider in ["list", "generator"]
+        assert self.amount >= 1
+        # Iterate
+        if (provider == "list"):
+            slot_list = data_obj['slots']
+            id_list = [f'{self._id}.slot_{n}' for n in range(self.amount)]   
+            assert len(slot_list) == self.amount
+            assert len(id_list) == self.amount
+            for slot_key, slot in zip(id_list, slot_list):
+                self.slots[slot_key] = ComponentSlot(slot)
+        # Generate from amount given
+        elif (provider == "generator"):
+            slot_sizes: str = data_obj['slot_sizes']
+            slot_types: str = data_obj['slot_types']
+            for n in range(self.amount):
+                slot_key = f'{self._id}.slot_{n}'
+                self.slots[slot_key] = ComponentSlot({"slot_type": slot_types, "size": slot_sizes})
+
 # Template, a ship in not christened until it has its minerva
+# Uneditable
 class HullTemplate:
     def  __init__(self, data_obj):
         self.id: str = data_obj['id']
@@ -15,33 +46,32 @@ class HullTemplate:
         # REGISTER MANUFACTURERS FIRST (change to registry getter)
         self.manufacturer: str = data_obj['manufacturer']
         self.stats: dict = data_obj['stats']
+        self.capacity: int = data_obj['capacity']
         # Component Slots (TODO CREATE ASSERT and safe calling)
-        self.component_slots = {}
+        # Create lambda to call data_obj
         self.core = ComponentSlot(data_obj['component_slots']['core'])
         self.thruster = ComponentSlot(data_obj['component_slots']['thruster'])
         self.sensors = ComponentSlot(data_obj['component_slots']['sensors'])
         # Mapped list components
-        self.primary_battery = {}
-        if (data_obj['component_slots']['primary_battery']['provider'] == "list"):
-            battery_list = data_obj['component_slots']['primary_battery']['battery']
-            assert len(battery_list) == data_obj['component_slots']['primary_battery']['amount']
-            n = 0
-            for bat in battery_list:
-                bat_id = f'pri_bat_{n}'
-                self.primary_battery[bat_id] = ComponentSlot(bat)
-                n += 1
+        self.primary_battery = SlotSet('primary_battery', data_obj['component_slots']['primary_battery'])
+        self.secondary_battery = SlotSet('secondary_battery', data_obj['component_slots']['secondary_battery'])
+        # Broadside is all or nothing on firing sequence
+        self.broadside_battery = SlotSet('broadside_battery', data_obj['component_slots']['broadside_battery'])
+        
         
     # Two main types of weapon batteries 
     # TURRETS
     # LAUNCHERS (missiles)
-    def __battery_creator(self):
-        pass
+ 
+    # CREATE data/reload function to reload data json objects
     
     
 # Different from componenet, this holds/points a component OBJ,
 # Has internal Reload/Logic
 class ShipComponent:
     def  __init__(self, stats):
+        # Maybe points to a stat OBJ
+        self.stats = stats
         self._evasion = stats['evasion']
         self._speed = stats['speed']
         self._luck = stats['luck']
@@ -51,3 +81,5 @@ class ShipComponent:
 class Ship:
     def  __init__(self, name, hull):
         self.name = name
+        # Component slots -> turn into ShipComponentSlots
+        # Can hold a ship component of matching size

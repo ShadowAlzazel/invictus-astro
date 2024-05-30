@@ -31,7 +31,9 @@ class Game:
         print(f'Memory size: {sys.getsizeof(new_grid.mapped_tiles)}')
         hull_data = loader._import_single_obj("data/ship/hulls/hull_ZB09.json")
         hull_template = ship.HullTemplate(hull_data)
-        print(f'Hull Template: {hull_template.primary_battery}')
+        print(f'Hull Template: {hull_template}')
+        print(f'Primary Battery: {hull_template.primary_battery.slots}')
+        print(f'Secondary Battery: {hull_template.secondary_battery.slots}')
         
 
     async def run(self):

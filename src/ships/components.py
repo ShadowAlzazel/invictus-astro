@@ -12,16 +12,16 @@ class Component:
         self.stats: dict = data_obj['stats']
         # Get Stats
         stat_keys = self.stats.keys()
-        in_keys = lambda k : k in stat_keys
+        has_stat = lambda k : k in stat_keys
         # Asserter
-        if in_keys('power'):
+        if has_stat('power'):
             self._power = self.stats['power']
             assert self._power >= 0
-        if in_keys('attack'):
-            self._attack = self.stats['attack']
+        if has_stat('damage'):
+            self._attack = self.stats['damage']
             assert self._attack >= 0
-        if in_keys('quantity'):
-            self._quantity = self.stats['attack']
+        if has_stat('quantity'):
+            self._quantity = self.stats['quantity']
             assert self._quantity >= 1
         
     # Componet 
@@ -31,11 +31,12 @@ class Component:
 class WeaponComponent(Component):
     def  __init__(self, data_obj):
         super().__init__(data_obj)
-        assert self.stats['attack'] >= 0 # 
+        assert self.stats['damage'] >= 0 # 
         assert self.stats['reload'] > 0 # No same turn shenanigans 
         assert self.stats['range'] >= 0 # *Melee weapons at 0 (same hex)
         assert self.stats['quantity'] > 0 # Needs to fire something
-
+        
+# Weapons have special attributes
 # Some have travel speed 
 # Some have (same tile AOE, or affects all in a tile)
 # Some have tile passsthrough, ignore entities in tile besides the targeted one
