@@ -3,37 +3,19 @@ import json
 import os
 from typing import Union, Self, Optional
 # Project modules
-from ships import components
+from ships import components, ship_templates
+from manufacturer import manufacturers
 
-class Registry:
-    def  __init__(self, name, type_holder):
-        self.name = name
-        self.type_holder = type_holder
-        self.values = {} # Holding in memory, maybe make more optimized
-
-    # Create seperated loader defs for all registries containing there class?
+class RegistryKeys:
+    def __init__():
+        self.components = []
 
 
-class RegistryAccessor:
-    def  __init__(self):
-        pass
-
-
-
+# Loader class for walking through files
 class Loader:
     def  __init__(self):
         pass
     
-    # Test method currently
-    def load_components(self, path, component_class):
-        assert issubclass(component_class, components.Component)
-        #assert component_class is components.Component
-        objs = self._import_obj_files(path)
-        for obj in objs: 
-            #print(f'Object name: {obj["name"]}')
-            new_obj = component_class(obj)
-            print(obj)
-            
     # Import a single obj from known path
     def _import_single_obj(self, path: str):
         obj = {}
@@ -66,3 +48,39 @@ class Loader:
                     full_path = f'{dirpath}/{filename}'
                     files.append(full_path)
         return files
+
+
+# Basic Holder of data members
+class Registry:
+    def  __init__(self, name: str, key_id: str, location: str, data_type):
+        self.name = name
+        self.id = key_id
+        self.location = location
+        self.data_type = data_type
+        # Holding in memory, maybe make more optimized
+        self.members = {} 
+
+    def _register_members(self, loaded_objs):
+        for obj in loaded_objs:
+            val = self.data_type(obj)
+            key_id = obj['id'] # Must have id
+            self.members[key_id] = val
+
+# ComplexRegistry -> Holds multiple registries
+
+# Main entry point for accesing data
+class RegistryAccessor:
+    def  __init__(self):
+        root = f'data'
+        # Defined Member Fields
+        self.components = Registry('Components', 'components', f'{root}/ship/components', components.Component)
+        self.hull_templates = Registry('Hull Templates', 'hull_templates', f'{root}/ship/hull_templates', ship_templates.HullTemplate)
+        self.manufacturers = Registry('Components', 'components', f'{root}/manufacturer', manufacturers.Manufacturer)
+        
+    def _register_all(self, loader: Loader):
+        registries = [self.components, self.hull_templates, self.manufacturers]
+        # register all
+        for registry in registries:
+            members = loader._import_obj_files(registry.location)
+            registry._register_members(members)
+
