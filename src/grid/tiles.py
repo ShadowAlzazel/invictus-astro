@@ -29,7 +29,7 @@ class HexGrid:
     def __init__(self, size=1):
         # List of tiles
         self.tiles: list[HexTile] = []
-        # Sorted Map to HexCoord string key
+        # Map of str to Tiles
         self.mapped_tiles: dict[str, HexTile] = {}
     
         # Very basic tile generator (optimize to generate in rings)

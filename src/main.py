@@ -18,7 +18,7 @@ class Game:
         self.level = Level()
      
     # Handle registering data from jsons
-    def _register(self):
+    def _register(self) -> None:
         self.data_loader = Loader()
         self.registries = RegistryAccessor()
         self.registries._register_all(self.data_loader)
@@ -50,7 +50,14 @@ class Game:
     # main nonblocking thread 
     async def run(self):
         self._register()
+        # --------------------- 
+        # TEST
+        hull_test = self.registries.hull_templates.get_by_key('hull_ZB09')
+        print(f'Hull: {hull_test.name} | Bat: {hull_test.primary_battery}')
+        lance_x2 = self.registries.components.get_by_key('lance_x2')
+        
         #breakpoint()
+        # --------------------- 
         # Run 
         game_running = True
         while game_running:
@@ -65,7 +72,7 @@ class Game:
             pygame.display.update()
 
 
-def launch():
+def launch() -> None:
     game = Game()
     asyncio.run(game.run())
 

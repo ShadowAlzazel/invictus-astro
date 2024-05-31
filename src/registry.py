@@ -17,7 +17,7 @@ class Loader:
         pass
     
     # Import a single obj from known path
-    def _import_single_obj(self, path: str):
+    def _import_single_obj(self, path: str) -> dict:
         obj = {}
         with open(path, 'r') as file:
             json_object = json.loads(file.read())     
@@ -25,7 +25,7 @@ class Loader:
         return obj
     
     # Import all objs from the data directory
-    def _import_obj_files(self, path: str):
+    def _import_obj_files(self, path: str) -> list[dict]:
         # Get files
         files = self._walk_and_find_files(path)
         objs = []
@@ -52,19 +52,26 @@ class Loader:
 
 # Basic Holder of data members
 class Registry:
-    def  __init__(self, name: str, key_id: str, location: str, data_type):
-        self.name = name
-        self.id = key_id
-        self.location = location
-        self.data_type = data_type
+    def  __init__(self, name: str, key_id: str, location: str, obj_class):
+        self.name:str  = name
+        self.id: str = key_id
+        self.location: str = location
+        self.OBJ_CLASS = obj_class
         # Holding in memory, maybe make more optimized
-        self.members = {} 
+        self.members: dict[str, self.OBJ_CLASS] = {} 
 
-    def _register_members(self, loaded_objs):
+    def _register_members(self, loaded_objs) -> None:
         for obj in loaded_objs:
-            val = self.data_type(obj)
+            val = self.OBJ_CLASS(obj)
             key_id = obj['id'] # Must have id
             self.members[key_id] = val
+            
+    def get_by_key(self, key_id: str): 
+        try:
+            return self.members[key_id]
+        except KeyError:
+            print('No object of that name exists in the registry')
+            return None
 
 # ComplexRegistry -> Holds multiple registries
 
@@ -77,7 +84,7 @@ class RegistryAccessor:
         self.hull_templates = Registry('Hull Templates', 'hull_templates', f'{root}/ship/hull_templates', ship_templates.HullTemplate)
         self.manufacturers = Registry('Components', 'components', f'{root}/manufacturer', manufacturers.Manufacturer)
         
-    def _register_all(self, loader: Loader):
+    def _register_all(self, loader: Loader) -> None:
         registries = [self.components, self.hull_templates, self.manufacturers]
         # register all
         for registry in registries:
