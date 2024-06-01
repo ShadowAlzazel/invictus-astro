@@ -2,6 +2,7 @@
   "id": "thruster_GAF2",
   "name": "Gravity Fabric Moduluting Propulsors Mk.2",
   "manufacturer": "invictus:ares_armed_corp",
+  "size": "XL",
   "stats": {
     "speed": 3,
     "power": 230

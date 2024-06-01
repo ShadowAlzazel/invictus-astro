@@ -3,13 +3,16 @@ import json
 import os
 from typing import Union, Self, Optional
 # Project modules
-from ships import components, ship_templates
+from ships import components, templates
 from manufacturer import manufacturers
 
 class RegistryKeys:
     def __init__():
         self.components = []
 
+ 
+#TODO CREATE data/reload function to reload data json objects
+    
 
 # Loader class for walking through files
 class Loader:
@@ -42,9 +45,6 @@ class Loader:
         for dirpath, dirnames, filenames in os.walk(path):
             for filename in filenames:
                 if filename.endswith(".json"):
-                    #print(f'Dirpath: {dirpath}')
-                    #print(f'Dirnames: {dirnames}')
-                    #print(f'Found file {filename}')
                     full_path = f'{dirpath}/{filename}'
                     files.append(full_path)
         return files
@@ -56,13 +56,13 @@ class Registry:
         self.name:str  = name
         self.id: str = key_id
         self.location: str = location
-        self.OBJ_CLASS = obj_class
+        self._OBJ_CLASS = obj_class
         # Holding in memory, maybe make more optimized
-        self.members: dict[str, self.OBJ_CLASS] = {} 
+        self.members: dict[str, self._OBJ_CLASS] = {} 
 
     def _register_members(self, loaded_objs) -> None:
         for obj in loaded_objs:
-            val = self.OBJ_CLASS(obj)
+            val = self._OBJ_CLASS(obj)
             key_id = obj['id'] # Must have id
             self.members[key_id] = val
             
@@ -81,7 +81,7 @@ class RegistryAccessor:
         root = f'data'
         # Defined Member Fields
         self.components = Registry('Components', 'components', f'{root}/ship/components', components.Component)
-        self.hull_templates = Registry('Hull Templates', 'hull_templates', f'{root}/ship/hull_templates', ship_templates.HullTemplate)
+        self.hull_templates = Registry('Hull Templates', 'hull_templates', f'{root}/ship/hull_templates', templates.HullTemplate)
         self.manufacturers = Registry('Components', 'components', f'{root}/manufacturer', manufacturers.Manufacturer)
         
     def _register_all(self, loader: Loader) -> None:

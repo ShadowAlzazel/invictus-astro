@@ -1,0 +1,15 @@
+{
+    "id": "em_rail_cannons_M16_x3",
+    "name": "Triple M16 Electromagnetic Rail Cannons Mk.6",
+    "manufacturer": "invictus:polaris_skunk_yards",
+    "size": "L",
+    "stats": {
+      "power": 32,
+      "damage": 404,
+      "quantity": 4,
+      "reload": 2,  
+      "hit": 65,
+      "range": 3
+    }
+  }
+  

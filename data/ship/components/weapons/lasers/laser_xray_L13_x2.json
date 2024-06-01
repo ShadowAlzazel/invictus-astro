@@ -1,14 +1,14 @@
 {
-  "id": "lance_deuterium_A23_x3",
-  "name": "Triple A23 Mk.12 Deuterium Lance",
+  "id": "laser_xray_L13_x2",
+  "name": "Double L13 Xray Laser V7",
   "manufacturer": "invictus:ishtar_tech",
   "size": "XL",
   "stats": {
     "power": 40,
     "damage": 886,
     "quantity": 3,
-    "reload": 2,
-    "hit": 85,
-    "range": 4
+    "reload": 1,
+    "hit": 95,
+    "range": 2
   }
 }

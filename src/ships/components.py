@@ -7,23 +7,23 @@ class Component:
     def  __init__(self, data_obj):
         self.id: str = data_obj['id']
         self.name: str = data_obj['name']
+        self.size: str = data_obj['size']
         # REGISTER MANUFACTURERS FIRST (change to registry getter)
         self.manufacturer: str = data_obj['manufacturer']
+        # Base stats
         self.stats: dict = data_obj['stats']
-        # Get Stats
         stat_keys = self.stats.keys()
         has_stat = lambda k : k in stat_keys
         # Asserter
         if has_stat('power'):
-            self._power = self.stats['power']
-            assert self._power >= 0
+            assert self.stats['power'] >= 0
         if has_stat('damage'):
-            self._attack = self.stats['damage']
-            assert self._attack >= 0
-        if has_stat('quantity'):
-            self._quantity = self.stats['quantity']
-            assert self._quantity >= 1
-        
+            assert self.stats['damage'] >= 0
+        if has_stat('quantity'):    
+            assert isinstance(self.stats['quantity'], int)
+            assert self.stats['quantity'] >= 1
+            
+            
     # Componet 
     # Any type of eqipment from weapons to radar to core
     

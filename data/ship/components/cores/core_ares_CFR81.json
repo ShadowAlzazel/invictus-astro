@@ -2,6 +2,7 @@
   "id": "core_ares_CFR81",
   "name": "Ares Interstellar Cold Fusion Reactor Mk.81",
   "manufacturer": "invictus:ares_armed_corp",
+  "size": "M",
   "stats": {
     "generator": 500
   }

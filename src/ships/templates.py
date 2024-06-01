@@ -1,5 +1,3 @@
-
-
 # A data holder 
 class ComponentSlot:
     def  __init__(self, data_obj):
@@ -10,14 +8,18 @@ class ComponentSlot:
     # Have different sizez, PWR usages, etc 
     # Points to a shipComponenet
 
+    # Two main types of weapon batteries 
+    # TURRETS
+    # LAUNCHERS (missiles)
+
 # Used for set of component_slots liek weapon batteries
 class SlotSet:
     def  __init__(self, set_id, data_obj):
         # set vars
         provider: str = data_obj['provider']
         self._id: str = set_id
-        self.amount: str = data_obj['amount']
-        self.slots = {}
+        self.amount: int = data_obj['amount']
+        self.slots: dict[str, ComponentSlot] = {}
         # Asserters
         assert provider in ["list", "generator"]
         assert self.amount >= 1
@@ -59,27 +61,6 @@ class HullTemplate:
         self.broadside_battery = SlotSet('broadside_battery', data_obj['component_slots']['broadside_battery'])
         
         
-    # Two main types of weapon batteries 
-    # TURRETS
-    # LAUNCHERS (missiles)
- 
-    # CREATE data/reload function to reload data json objects
+
+
     
-    
-# Different from componenet, this holds/points a component OBJ,
-# Has internal Reload/Logic
-class ShipComponent:
-    def  __init__(self, stats):
-        # Maybe points to a stat OBJ
-        self.stats = stats
-        self._evasion = stats['evasion']
-        self._speed = stats['speed']
-        self._luck = stats['luck']
-        self._stealth = stats['stealth']
-    
-# Not an Entity 
-class Ship:
-    def  __init__(self, name, hull):
-        self.name = name
-        # Component slots -> turn into ShipComponentSlots
-        # Can hold a ship component of matching size

@@ -2,6 +2,7 @@
   "id": "lance_deuterium_A23_x3",
   "name": "Double A23 Mk.12 Deuterium Lance",
   "manufacturer": "invictus:ishtar_tech",
+  "size": "XL",
   "stats": {
     "power": 30,
     "damage": 886,

@@ -8,6 +8,13 @@
 
 # For making CUSTOM ships 3 key design choices 
 
+# STATS
+# Damage -> How much points of damage each unit does
+# 
+
+# Maybe themral rating?
+# more lower, higher visibility it makes the ship, reducing stealth, making easier to target
+
 
 # HULL
 # Controls the type of ship (BC, BB, etc.)
