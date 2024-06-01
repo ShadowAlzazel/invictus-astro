@@ -3,10 +3,12 @@
   "name": "ZB09 Hull",
   "manufacturer": "invictus:polaris_skunk_yards",
   "stats": {
+    "attack": 22,
     "evasion": 37,
     "speed": 1,
     "luck": 3,
-    "stealth": 0
+    "stealth": 0,
+    "hit_points": 5000
   },
   "capacity": 14,
   "component_slots": {
@@ -25,7 +27,7 @@
     "primary_battery": {
       "provider": "list",
       "amount": 5,
-      "battery": [
+      "slots": [
         {
           "slot_type": "turret",
           "size": "L"
@@ -51,12 +53,14 @@
     "secondary_battery": {
       "provider": "generator",
       "amount": 6,
-      "turret_size": "M"
+      "slot_sizes": "M",
+      "slot_types": "turret"
     },
     "broadside_battery": {
       "provider": "generator",
       "amount": 10,
-      "turret_size": "XS"
+      "slot_sizes": "XS",
+      "slot_types": "turret"
     }
   }
 }

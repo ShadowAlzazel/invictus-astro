@@ -3,39 +3,24 @@ import json
 import os
 from typing import Union, Self, Optional
 # Project modules
-from ships import components
+from ships import components, templates
+from manufacturer import manufacturers
 
-class Registry:
-    def  __init__(self, name, type_holder):
-        self.name = name
-        self.type_holder = type_holder
-        self.values = {} # Holding in memory, maybe make more optimized
+class RegistryKeys:
+    def __init__():
+        self.components = []
 
-    # Create seperated loader defs for all registries containing there class?
+ 
+#TODO CREATE data/reload function to reload data json objects
+    
 
-
-class RegistryAccessor:
-    def  __init__(self):
-        pass
-
-
-
+# Loader class for walking through files
 class Loader:
     def  __init__(self):
         pass
     
-    # Test method currently
-    def load_components(self, path, component_class):
-        assert issubclass(component_class, components.Component)
-        #assert component_class is components.Component
-        objs = self._import_obj_files(path)
-        for obj in objs: 
-            #print(f'Object name: {obj["name"]}')
-            new_obj = component_class(obj)
-            print(obj)
-            
     # Import a single obj from known path
-    def _import_single_obj(self, path: str):
+    def _import_single_obj(self, path: str) -> dict:
         obj = {}
         with open(path, 'r') as file:
             json_object = json.loads(file.read())     
@@ -43,7 +28,7 @@ class Loader:
         return obj
     
     # Import all objs from the data directory
-    def _import_obj_files(self, path: str):
+    def _import_obj_files(self, path: str) -> list[dict]:
         # Get files
         files = self._walk_and_find_files(path)
         objs = []
@@ -60,9 +45,49 @@ class Loader:
         for dirpath, dirnames, filenames in os.walk(path):
             for filename in filenames:
                 if filename.endswith(".json"):
-                    #print(f'Dirpath: {dirpath}')
-                    #print(f'Dirnames: {dirnames}')
-                    #print(f'Found file {filename}')
                     full_path = f'{dirpath}/{filename}'
                     files.append(full_path)
         return files
+
+
+# Basic Holder of data members
+class Registry:
+    def  __init__(self, name: str, key_id: str, location: str, obj_class):
+        self.name:str  = name
+        self.id: str = key_id
+        self.location: str = location
+        self._OBJ_CLASS = obj_class
+        # Holding in memory, maybe make more optimized
+        self.members: dict[str, self._OBJ_CLASS] = {} 
+
+    def _register_members(self, loaded_objs) -> None:
+        for obj in loaded_objs:
+            val = self._OBJ_CLASS(obj)
+            key_id = obj['id'] # Must have id
+            self.members[key_id] = val
+            
+    def get_by_key(self, key_id: str): 
+        try:
+            return self.members[key_id]
+        except KeyError:
+            print('No object of that name exists in the registry')
+            return None
+
+# ComplexRegistry -> Holds multiple registries
+
+# Main entry point for accesing data
+class RegistryAccessor:
+    def  __init__(self):
+        root = f'data'
+        # Defined Member Fields
+        self.components = Registry('Components', 'components', f'{root}/ship/components', components.Component)
+        self.hull_templates = Registry('Hull Templates', 'hull_templates', f'{root}/ship/hull_templates', templates.HullTemplate)
+        self.manufacturers = Registry('Components', 'components', f'{root}/manufacturer', manufacturers.Manufacturer)
+        
+    def _register_all(self, loader: Loader) -> None:
+        registries = [self.components, self.hull_templates, self.manufacturers]
+        # register all
+        for registry in registries:
+            members = loader._import_obj_files(registry.location)
+            registry._register_members(members)
+
