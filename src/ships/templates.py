@@ -1,3 +1,4 @@
+
 # A data holder 
 class ComponentSlot:
     def  __init__(self, data_obj):
@@ -12,19 +13,19 @@ class ComponentSlot:
     # TURRETS
     # LAUNCHERS (missiles)
 
-# Used for set of component_slots liek weapon batteries
+# Used for set of component_slots like weapon batteries
 class SlotSet:
     def  __init__(self, set_id, data_obj):
         # set vars
-        provider: str = data_obj['provider']
+        set_type: str = data_obj['type']
         self._id: str = set_id
         self.amount: int = data_obj['amount']
         self.slots: dict[str, ComponentSlot] = {}
         # Asserters
-        assert provider in ["list", "generator"]
+        assert set_type in ["list", "generator"]
         assert self.amount >= 1
         # Iterate
-        if (provider == "list"):
+        if (set_type == "list"):
             slot_list = data_obj['slots']
             id_list = [f'{self._id}.slot_{n}' for n in range(self.amount)]   
             assert len(slot_list) == self.amount
@@ -32,7 +33,7 @@ class SlotSet:
             for slot_key, slot in zip(id_list, slot_list):
                 self.slots[slot_key] = ComponentSlot(slot)
         # Generate from amount given
-        elif (provider == "generator"):
+        elif (set_type == "generator"):
             slot_sizes: str = data_obj['slot_sizes']
             slot_types: str = data_obj['slot_types']
             for n in range(self.amount):

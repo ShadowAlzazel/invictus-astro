@@ -1,0 +1,14 @@
+{
+  "id": "matter_fluxer_F8_x2",
+  "name": "Double V250 Matter Fluxer",
+  "manufacturer": "invictus:archmagis_centauri_guild",
+  "size": "M",
+  "stats": {
+    "power": 60,
+    "damage": 775,
+    "quantity": 2,
+    "reload": 4,
+    "hit": 75,
+    "range": 2
+  }
+}

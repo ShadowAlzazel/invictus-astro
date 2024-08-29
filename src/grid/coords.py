@@ -81,7 +81,6 @@ class HexCoord:
         return coords
     
     
-    
     # linear interpolation for floats
     def _lerp(self, a, b, t):
         return a + (b - a) * t

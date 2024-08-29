@@ -2,7 +2,7 @@ from pygame.math import Vector2
 
 # Screen
 SCREEN_WIDTH = 1920
-SCREEN_HEIGHT= 1080
+SCREEN_HEIGHT = 1080
 TILE_SIZE = 64
 
 # Framerate

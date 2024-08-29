@@ -3,6 +3,7 @@ import pygame
 #JSON filename [subtype]_[manufactures]_[name]
 # MAYBE CREATE DATACLASS??
 class Component: 
+    # Any type of eqipment from weapons to radar to core
     # A template that can be copied
     def  __init__(self, data_obj):
         self.id: str = data_obj['id']
@@ -21,11 +22,8 @@ class Component:
             assert self.stats['damage'] >= 0
         if has_stat('quantity'):    
             assert isinstance(self.stats['quantity'], int)
-            assert self.stats['quantity'] >= 1
-            
-            
-    # Componet 
-    # Any type of eqipment from weapons to radar to core
+            assert self.stats['quantity'] >= 1 
+   
     
 #JSON filename [subtype]_[manufactures]_[name]_[subtype_ID][Size]_[quantity]
 class WeaponComponent(Component):

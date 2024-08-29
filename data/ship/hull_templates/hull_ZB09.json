@@ -25,7 +25,7 @@
       "size": "L"
     },
     "primary_battery": {
-      "provider": "list",
+      "type": "list",
       "amount": 5,
       "slots": [
         {
@@ -51,13 +51,13 @@
       ]
     },
     "secondary_battery": {
-      "provider": "generator",
+      "type": "generator",
       "amount": 6,
       "slot_sizes": "M",
       "slot_types": "turret"
     },
     "broadside_battery": {
-      "provider": "generator",
+      "type": "generator",
       "amount": 10,
       "slot_sizes": "XS",
       "slot_types": "turret"

@@ -8,6 +8,9 @@ from level import Level
 # Project modules
 from ships import components, templates, ship_main
 from grid import tiles, coords
+from entity import ship_entities
+
+# @Classmethod
 
 class Game: 
     def __init__(self):
@@ -37,7 +40,7 @@ class Game:
         print(rail_can_x3)
         # Ship
         bb_70 = ship_main.Ship("ASCS Queen Alsace", "BB-70", hull_test)
-        print(f'{bb_70.name} ({bb_70.isc_id}): {bb_70}')
+        print(f'{bb_70.name} ({bb_70.asc_id}): {bb_70}')
         print(f'Primary Battery: {bb_70.primary_battery.slots}')
         bb_70.primary_battery.slots["primary_battery.slot_0"].add_component(rail_can_x3)
         print(f'Turret 1: {bb_70.primary_battery.slots["primary_battery.slot_0"]}')

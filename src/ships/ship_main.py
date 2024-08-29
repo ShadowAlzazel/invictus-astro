@@ -46,9 +46,12 @@ class ShipComponentSlot:
 
     # Tries to add a component to the slot return if success
     def add_component(self, component: ShipComponent) -> bool:
+        # TODO: check if add a ComponentRAW
         if not self._is_empty:
             return False
         if component.size != self.size:
+            return False
+        if not isinstance(component, ShipComponent):
             return False
         # Success
         self._is_empty = False
@@ -86,10 +89,10 @@ class ShipSlotSet:
 # Not an Entity 
 class Ship:
     # Make hull to registry pointer, /DATA OBJ
-    def  __init__(self, name: str, isc_id: str, hull: HullTemplate, 
-        data_obj: Optional[dict]=None):
+    def __init__(self, name: str, asc_id: str, hull: HullTemplate, 
+                 data_obj: Optional[dict]=None):
         self.name: str = name
-        self.isc_id: str = isc_id #Invictus Space Command ID
+        self.asc_id: str = asc_id # Arcus Space Command ID
         # Hull Reference
         self._hull: HullTemplate = hull # A reference do not modify
         # Primary stats
@@ -98,11 +101,23 @@ class Ship:
         self._speed = self.stats['speed']
         self._luck = self.stats['luck']
         self._stealth = self.stats['stealth']
-        # TODO: Merge slot assigner and ShipComponent init here
-        # Create Slots from hull template
-        self.core = ShipComponentSlot(self._hull.core)
-        self.thruster = ShipComponentSlot(self._hull.thruster)
-        self.sensors = ShipComponentSlot(self._hull.sensors)
+        self._hit_points = self.stats['hit_points']
+        # Merge slot assigner and ShipComponent init here
+        
+        # Create slots
+        self.core: ShipComponentSlot = ShipComponentSlot(hull.core)
+        self.thruster: ShipComponentSlot = ShipComponentSlot(hull.thruster)
+        self.sensors: ShipComponentSlot = ShipComponentSlot(hull.sensors)
         # Mapped Slot sets
-        self.primary_battery = ShipSlotSet(self._hull.primary_battery)
-   
+        self.primary_battery: ShipSlotSet = ShipSlotSet(hull.primary_battery)
+
+        # Create final map for slots
+        self.component_slots: dict[str, ShipComponentSlot] = {}
+        self.component_slots['core'] = self.core 
+        self.component_slots['thruster'] = self.thruster
+        self.component_slots['sensors'] = self.sensors
+    
+    def add_component(self, component: Component, key: str):
+        new_component = ShipComponent(component)
+        self.component_slots[key].add_component(new_component)
+       

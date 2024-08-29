@@ -8,12 +8,12 @@ from grid.coords import HexCoord
 class HexTile:
     def __init__(self, hex_coords: HexCoord, sprite=None):
         # Coords (soft immutable)
-        self._hex_coords = hex_coords
-        self._q = self._hex_coords.q
-        self._r = self._hex_coords.r
-        self._s = self._hex_coords.s
+        self._hex_coords: HexCoord = hex_coords
+        self._q: int = self._hex_coords.q
+        self._r: int = self._hex_coords.r
+        self._s: int = self._hex_coords.s
         # Neighbors
-        self.neighbors = {
+        self.neighbors: dict[str, Optional[HexTile]] = {
             'R': None,
             'L': None,
             'UR': None,
@@ -43,12 +43,9 @@ class HexGrid:
                         self.mapped_tiles[new_coord.coord_to_key()] = new_hex_tile
                         #print(f'Tile {q,r,s}: {new_hex_tile}')
                         
-    def get_tile_at(
-        self, 
-        coord: Optional[HexCoord]=None,
-        qrs: Optional[list[int]]=None):
+    def get_tile_at(self, coord: Optional[HexCoord]=None, qrs: Optional[list[int]]=None) -> Optional[HexTile]:
+        # return a tile if inputed a coord
         try:
-            # return a tile if inputed a coord
             if coord:
                 return self.mapped_tiles[coord.coord_to_key()]
             # Create key if valid coord qrs and return tile
