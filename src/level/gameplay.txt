@@ -1,0 +1,28 @@
+# 
+
+# Like XCOM 2, the ships have two major action points that they can use
+# Either to move(using mobility stat) twice, or attack and move twice.
+
+# Though unlike XCOM, the commands issued are not causal(like you can tell what happens instantly)
+# BUt are orders and are ALL executed at the end of the turn. 
+
+# Most ships (cruisers, BC, destroyers) move 2 hexes per command, 
+# Battleships move 1 per command
+# Frigates 3 per command
+
+# Large slow guns like rail guns (that take a turn or more to reach target)
+# can have a spread pattern (toggle) like a line, or a 'C' or manual
+
+# Most particle beam weapons at effective range take 1 turn to reach their target,
+# If close enough there is no delay
+
+# Maybe ranges coudl affect START OF TURN and END OF TURN weapons
+
+# Missiles have a (payload health) which is the amount of missiles in the swarm
+# The less missiles in the swarm, the less damage it does.
+
+# But an initial swarm requires alot of coordinated fire to take down as thye have 30+
+# in effective health
+
+# When a weapon (HITS) a targets HEX, now the weapons stats of ACC and the ships stat of ACC
+# are rolled against the targets DGE dodge.
